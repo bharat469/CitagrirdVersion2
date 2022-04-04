@@ -14,6 +14,12 @@ import ForgetPin from '../screens/pinScreen/forgetPin';
 import PinOtp from '../screens/pinScreen/pinOtp';
 import CreatePin from '../screens/pinScreen/createPin';
 
+import Home from '../screens/home/home';
+import SymptomScreen from '../screens/symptoms/SymptomScreen';
+import Speciality from '../screens/speciality/Speciality';
+import SearchScreen from '../screens/searchScreen/searchScreen';
+import DoctorInfo from '../screens/doctorInfo/doctorInfo';
+
 const homeStack = createNativeStackNavigator();
 
 const Navigation = () => {
@@ -69,6 +75,31 @@ const Navigation = () => {
         <homeStack.Screen
           name="createPin"
           component={CreatePin}
+          options={{headerShown: false}}
+        />
+        <homeStack.Screen
+          name="HomeScreen"
+          component={Home}
+          options={{headerShown: false}}
+        />
+        <homeStack.Screen
+          name="Symptoms"
+          component={SymptomScreen}
+          options={{headerShown: false}}
+        />
+        <homeStack.Screen
+          name="Speciality"
+          component={Speciality}
+          options={{headerShown: false}}
+        />
+        <homeStack.Screen
+          name="Search"
+          component={SearchScreen}
+          options={{headerShown: false}}
+        />
+        <homeStack.Screen
+          name="DoctorInfo"
+          component={DoctorInfo}
           options={{headerShown: false}}
         />
       </homeStack.Navigator>

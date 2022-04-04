@@ -22,10 +22,10 @@ const PinScreen = ({navigation}) => {
     setValue,
   });
   const CELL_COUNT = 6;
-  const pin = '12345';
+  const pin = '123456';
   const verifyPin = () => {
     if (pin === value) {
-      navigation.replace('changePassword');
+      navigation.replace('HomeScreen');
     } else {
       Alert.alert('Invalid Pin !!! ', 'Please enter valid Pin');
       setValue('');
