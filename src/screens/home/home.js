@@ -32,7 +32,9 @@ const Home = ({navigation}) => {
             <Text style={styles.searchText}>
               Let’s find you a doctor for consultation
             </Text>
-            <TouchableOpacity style={styles.searchBar}>
+            <TouchableOpacity
+              style={styles.searchBar}
+              onPress={() => navigation.navigate('Search')}>
               <Text style={styles.searchHeader}>
                 Search by doctors symptoms...
               </Text>

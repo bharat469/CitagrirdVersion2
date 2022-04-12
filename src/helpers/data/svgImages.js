@@ -45,4 +45,11 @@ export {default as Dr3} from '../assets/home/doctors/dr3.svg';
 export {default as Dr4} from '../assets/home/doctors/dr4.svg';
 export {default as Dr5} from '../assets/home/doctors/dr5.svg';
 
+// filter List
 export {default as Filter} from '../assets/header/filter.svg';
+
+// Token Screen
+export {default as TokenSvg} from '../assets/Token/Token.svg';
+
+// payment screen
+export {default as PaymentConfirmation} from '../assets/payment/payment.svg';

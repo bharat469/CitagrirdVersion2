@@ -39,7 +39,7 @@ const Register = ({navigation}) => {
     <KeyboardAwareScrollView>
       <View style={styles.registerForm}>
         <Signup width={300} height={300} />
-        <View>
+        <View style={styles.registerInput}>
           <Input
             icon={<Entypo name="user" size={24} color={Primary} />}
             Placeholder="Username"
@@ -58,7 +58,7 @@ const Register = ({navigation}) => {
             value={password}
             onChangeText={text => setPassword(text)}
           />
-          <View style={styles.textWarning}>
+          <View style={styles.textTerms}>
             <Text style={styles.headerText}>
               By continuing further you will abide the{' '}
             </Text>
@@ -122,17 +122,27 @@ const styles = StyleSheet.create({
   },
   ButtonText: {
     width: wp('90%'),
+    bottom: hp('2.4%'),
   },
   textWarning: {
     alignItems: 'center',
     flexDirection: 'row',
+    bottom: hp('2%'),
   },
   headerText: {
     fontSize: hp('2%'),
+
     color: '#000',
   },
   textBtn: {
     color: Primary,
     fontWeight: '800',
+  },
+  registerInput: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  textTerms: {
+    alignItems: 'center',
   },
 });

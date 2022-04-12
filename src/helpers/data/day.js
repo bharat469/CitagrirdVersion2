@@ -1,30 +1,30 @@
 export const Day = [
   {
     id: 0,
-    day: 'Monday',
+    day: 'Mon',
   },
   {
     id: 1,
-    day: 'Tuesday',
+    day: 'Tues',
   },
   {
     id: 2,
-    day: 'Wednesday',
+    day: 'Wed',
   },
   {
     id: 3,
-    day: 'Thursday',
+    day: 'Thurs',
   },
   {
     id: 4,
-    day: 'Friday',
+    day: 'Fri',
   },
   {
     id: 5,
-    day: 'Saturday',
+    day: 'Sat',
   },
   {
     id: 6,
-    day: 'Sunday',
+    day: 'Sun',
   },
 ];

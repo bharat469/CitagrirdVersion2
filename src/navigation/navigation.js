@@ -19,6 +19,9 @@ import SymptomScreen from '../screens/symptoms/SymptomScreen';
 import Speciality from '../screens/speciality/Speciality';
 import SearchScreen from '../screens/searchScreen/searchScreen';
 import DoctorInfo from '../screens/doctorInfo/doctorInfo';
+import TokenScreen from '../screens/tokenScreen/tokenScreen';
+import BookingForms from '../screens/bookingForms/bookingForms';
+import PaymentConfirm from '../screens/paymentConfirm/paymentConfirm';
 
 const homeStack = createNativeStackNavigator();
 
@@ -100,6 +103,21 @@ const Navigation = () => {
         <homeStack.Screen
           name="DoctorInfo"
           component={DoctorInfo}
+          options={{headerShown: false}}
+        />
+        <homeStack.Screen
+          name="TokenScreen"
+          component={TokenScreen}
+          options={{headerShown: false}}
+        />
+        <homeStack.Screen
+          name="BookingDetails"
+          component={BookingForms}
+          options={{headerShown: false}}
+        />
+        <homeStack.Screen
+          name="PaymentConfirmation"
+          component={PaymentConfirm}
           options={{headerShown: false}}
         />
       </homeStack.Navigator>

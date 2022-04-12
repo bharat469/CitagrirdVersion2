@@ -8,15 +8,17 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {Primary} from '../../helpers/data/colors';
 import {Doctor} from '../../helpers/data/Doctor';
-import moment from 'moment';
-import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import {Day} from '../../helpers/data/day';
+import {Time} from '../../helpers/data/time';
 
 const DoctorInfo = ({navigation, route}) => {
   const {name} = route.params;
   const [data, setData] = useState(Doctor);
-  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
-  const [date, setDate] = useState('DD-MM-YYYY');
+  const [date, setDate] = useState('');
+  const [time, setTime] = useState('');
+  const [id, setId] = useState();
+  const [Tid, setTid] = useState();
 
   useEffect(() => {
     doctInfo();
@@ -29,19 +31,15 @@ const DoctorInfo = ({navigation, route}) => {
     setData(newData);
   };
 
-  const showDatePicker = () => {
-    setDatePickerVisibility(true);
-    console.log('true');
+  const selectDays = item => {
+    setId(item.id);
+    setDate(item.day);
+    console.log(date);
   };
 
-  const hideDatePicker = () => {
-    setDatePickerVisibility(false);
-  };
-
-  const handleConfirm = date => {
-    setDate(moment(date).format('Do MMMM YYYY'));
-    console.log('Hit it');
-    hideDatePicker();
+  const selectTime = item => {
+    setTid(item.id);
+    setTime(item.time);
   };
 
   return (
@@ -87,19 +85,57 @@ const DoctorInfo = ({navigation, route}) => {
           );
         })}
         <View style={styles.calender}>
-          <Text style={styles.aboutText}>Select Date</Text>
-          <TouchableOpacity
-            style={styles.textInputStyle}
-            onPress={showDatePicker}>
-            <Text style={styles.DateText}>{date ? date : '04/04/1991'}</Text>
-            <FontAwesome name="calendar" size={24} color={Primary} />
-          </TouchableOpacity>
-          <DateTimePickerModal
-            isVisible={isDatePickerVisible}
-            mode="date"
-            onConfirm={handleConfirm}
-            onCancel={hideDatePicker}
+          <Text style={styles.aboutText}>Select Day's</Text>
+          <FlatList
+            data={Day}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            renderItem={({item, index}) => {
+              return (
+                <TouchableOpacity
+                  style={id === index ? styles.daySelected : styles.daySelect}
+                  onPress={() => selectDays(item)}>
+                  <Text
+                    style={
+                      id === index ? styles.dayTextSelected : styles.dayText
+                    }>
+                    {item.day}
+                  </Text>
+                </TouchableOpacity>
+              );
+            }}
           />
+        </View>
+        <View style={styles.time}>
+          {Time.map((item, index) => {
+            return (
+              <TouchableOpacity
+                key={index}
+                style={Tid === index ? styles.TimeSelected : styles.TimeSelect}
+                onPress={() => selectTime(item)}>
+                <Text
+                  style={
+                    Tid === index ? styles.timeTextSelected : styles.timeText
+                  }>
+                  {item.time}
+                </Text>
+              </TouchableOpacity>
+            );
+          })}
+          <View style={styles.buttonStyle}>
+            <Text style={styles.buttonText}> ₹ 200</Text>
+
+            <TouchableOpacity
+              style={styles.bookbtn}
+              onPress={() =>
+                navigation.navigate('TokenScreen', {
+                  day: date,
+                  time: time,
+                })
+              }>
+              <Text style={styles.bookAppointment}> Book Appointment</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     </View>
@@ -225,5 +261,103 @@ const styles = StyleSheet.create({
   DateText: {
     fontSize: hp('2%'),
     color: '#000',
+  },
+  daySelect: {
+    margin: 12,
+    borderWidth: 1,
+    padding: 12,
+    width: wp('20%'),
+    alignItems: 'center',
+    borderRadius: 15,
+    borderColor: Primary,
+  },
+  TimeSelect: {
+    margin: 6,
+    borderWidth: 1,
+    padding: 12,
+    width: wp('30%'),
+    alignItems: 'center',
+    borderRadius: 15,
+    borderColor: Primary,
+  },
+  daySelected: {
+    margin: 12,
+    borderWidth: 1,
+    padding: 12,
+    width: wp('20%'),
+    alignItems: 'center',
+    borderRadius: 15,
+    borderColor: Primary,
+    backgroundColor: Primary,
+  },
+  TimeSelected: {
+    margin: 6,
+    borderWidth: 1,
+    padding: 12,
+    width: wp('30%'),
+    alignItems: 'center',
+    borderRadius: 15,
+    borderColor: Primary,
+    backgroundColor: Primary,
+  },
+  dayText: {
+    color: '#000',
+    fontWeight: '700',
+    fontSize: hp('2%'),
+  },
+  timeText: {
+    color: '#000',
+    fontWeight: '700',
+    fontSize: hp('2%'),
+  },
+  dayTextSelected: {
+    color: '#fff',
+    fontWeight: '700',
+    fontSize: hp('2%'),
+  },
+  timeTextSelected: {
+    color: '#fff',
+    fontWeight: '700',
+    fontSize: hp('2%'),
+  },
+  timeTextSelected: {
+    color: '#fff',
+    fontWeight: '700',
+    fontSize: hp('2%'),
+  },
+  time: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  buttonStyle: {
+    borderWidth: 1,
+    flexDirection: 'row',
+    width: wp('63.5%'),
+
+    alignItems: 'center',
+    margin: 12,
+    borderColor: Primary,
+    borderRadius: 16,
+  },
+  buttonText: {
+    color: Primary,
+    fontWeight: '700',
+    fontSize: hp('2.2%'),
+    padding: 6,
+  },
+  bookbtn: {
+    backgroundColor: Primary,
+    padding: 12,
+    marginLeft: 12,
+    width: wp('46%'),
+    borderTopRightRadius: 16,
+    borderBottomRightRadius: 16,
+  },
+  bookAppointment: {
+    color: '#ffff',
+    fontSize: hp('2%'),
+    fontWeight: '700',
   },
 });
